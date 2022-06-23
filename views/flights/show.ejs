@@ -1,0 +1,69 @@
+<%- include('../partials/html-head') %>
+  <%- include('../partials/nav') %>
+    <main>
+      <section>
+        <div>Airline:</div>
+        <div>
+          <%= flight.airline %>
+            <a href="/flights/<%= flight._id %>/edit">
+              <button>Edit Flight</button>
+            </a>
+        </div>
+        <div>Airport: </div>
+        <div>
+          <%= flight.airport %>
+        </div>
+        <div>Flight Number: </div>
+        <div>
+          <%= flight.flightNo %>
+        </div>
+        <div>Flight Depart: </div>
+        <div>
+          <%= flight.departs %>
+        </div>
+      </section>
+      <div>Meal:</div>
+    <ul>
+      <% flight.meals.forEach(meal => { %>
+        <li><%= meal.name %></li>
+      <% }) %>
+    </ul>
+	<%# end cast list %>
+  </section>
+	<%# add to cast form below this comment %>
+  <form id="add-per-to-cast" action="/flights/<%=flight._id %>/meals" method="POST">
+    <select name="mealId">
+      <% meals.forEach(meal => { %>
+        <option value="<%= meal._id %>"><%= meal.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Add to Meal</button>
+  </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Seat</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%flight.tickets.forEach(ticket=> { %>
+            <tr>
+              <td>
+                <%= ticket.seat %>
+              </td>
+              <td>
+                <%= ticket.price %>
+              </td>
+              <td>
+                <form action="/flights/<%= flight._id %> ?_method=DELETE" method="POST">
+                  <button>X</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </main>
+    <%- include("../partials/footer") %>

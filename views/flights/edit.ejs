@@ -1,0 +1,40 @@
+<%- include('../partials/html-head') %>
+
+  <a href="/flights/new">New Flight</a>
+  <a href="/flights">All Flights</a>
+  <%- include('../partials/nav') %>
+  <main>
+    <form id="new-form" action="/flights/<%= flight._id%>?_method=PUT" method="POST">
+      <label for="airline-select">Airline</label>
+      <select name="airline" value="<%= flight.airline %>">
+        <option value="American">American</option>
+        <option value="Southwest">Southwest</option>
+        <option value="United">United</option>
+      </select>
+      <label for="airport-select">Airport</label>
+      <select name="airport" value="<%= flight.airport %>">
+        <option value="DEN">DEN</option>
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+      </select>
+      <label for="flightNo" required>Enter Flight Number:</label>
+      <input type="number" name="flightNo" value="<%= flight.flightNo %>">
+      <label for="departs" required>Departing Day:</label>
+      <input type="date" name="departs" value="<%= flight.departs %>">
+      <button type="submit">Change Flight</button>
+    </form>
+    <form 
+    id="add-review-form"
+    action="/flights/<%= flight._id %>/tickets"
+    method="POST"
+  >
+    <label for="seat-input">Seating</label>
+    <input name="seat" id="seat-input">
+    <label for="price input">Price:</label>
+    <input type="money" name="price" re>
+    <button type="submit">Add Seating and Price</button>
+  </form>
+  </main>
+    <%- include("../partials/footer") %>
