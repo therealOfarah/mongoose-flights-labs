@@ -68,26 +68,12 @@ function createTicket(req,res){
     flight.tickets.push(req.body)
     flight.save()
     .then(()=>{
-      res.redirect(`/flights`)
+      res.redirect(`/flights/${flight._id}`)
     })
   })
   .catch(err => {
     console.log(err)
-    res.redirect("/")
-  })
-}
-function removeTicket(req,res){
-  Flight.findByIdAndDelete(req.params.id)
-  .then(flight=>{
-    flight.tickets.pop(req.body)
-    flight.save()
-    .then(()=>{
-      res.redirect('flights/show')
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect("/")
+    res.redirect('/')
   })
 }
 
@@ -97,7 +83,7 @@ function addMeal(req,res){
     flight.meals.push(req.body.mealId)
     flight.save()
     .then(()=>{
-      res.redirect(`/`)
+      res.redirect(`/flights/${flight._id}`)
     })
   })
 }
@@ -110,6 +96,6 @@ export {
   edit,
   update,
   createTicket,
-  removeTicket,
+
   addMeal
 }

@@ -1,7 +1,4 @@
 <%- include('../partials/html-head') %>
-
-  <a href="/flights/new">New Flight</a>
-  <a href="/flights">All Flights</a>
   <%- include('../partials/nav') %>
   <main>
     <form id="new-form" action="/flights/<%= flight._id%>?_method=PUT" method="POST">
